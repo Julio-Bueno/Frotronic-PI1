@@ -4,10 +4,10 @@ async function main(){
     //criar usuário de teste
     const user = await prisma.user.create({
         data:{
-            name: "tester",
-            password: "tester123",
-            height: 3,
-            description: "Usuário de teste para desenvolvimento"
+            name: "recepcionista",
+            password: "chiptronicFrota",
+            height: 2,
+            description: "Agendamento e controle de veículos da frota"
         }
     })
     console.log("Usuário criado:", user);
