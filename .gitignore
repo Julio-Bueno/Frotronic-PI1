@@ -44,4 +44,4 @@ next-env.d.ts
 /generated/prisma
 
 # local scrpts
-/script.ts
+.script.ts
