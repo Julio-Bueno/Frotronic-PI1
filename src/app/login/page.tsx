@@ -32,10 +32,10 @@ export default function Login() {
                 localStorage.setItem('userName', data.name);
                 router.push('/dashboard');
             } else {
-                setError(data.error || 'Login failed');
+                setError(data.error || 'Login malsucedido');
             }
         } catch (err) {
-            setError('An error occurred. Please try again.');
+            setError('Ocorreu um erro. Por favor, tente novamente ou envie um email.');
         } finally {
             setLoading(false);
         }

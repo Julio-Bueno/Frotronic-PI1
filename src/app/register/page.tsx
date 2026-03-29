@@ -22,7 +22,7 @@ export default function Register() {
 
         // Validate passwords match
         if (password !== confirmPassword) {
-            setError('Passwords do not match');
+            setError('As senhas não coincidem');
             setLoading(false);
             return;
         }
@@ -37,15 +37,15 @@ export default function Register() {
             const data = await res.json();
 
             if (res.ok) {
-                setSuccess('Registration successful! Redirecting to login...');
+                setSuccess('Cadastro realizado com sucesso, redirecionando para o login...');
                 setTimeout(() => {
                     router.push('/login');
                 }, 2000);
             } else {
-                setError(data.error || 'Registration failed');
+                setError(data.error || 'Falha no cadastro');
             }
         } catch (err) {
-            setError('An error occurred. Please try again.');
+            setError('Ocorreu um erro. Por favor, tente novamente ou envie um email.');
         } finally {
             setLoading(false);
         }
