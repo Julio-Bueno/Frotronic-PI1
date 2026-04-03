@@ -42,9 +42,7 @@ next-env.d.ts
 
 #database
 /generated/prisma
+/dev.db
 
 # local scrpts
 /scripts/
-
-#db
-./dev.db

@@ -15,7 +15,7 @@ export async function POST(request: Request){
             return new Response(JSON.stringify({
                 success: false,
                 error: 'Usuário e senha são obrigatórios.'
-            }), {
+            }),{
                 status: 400,
                 headers: {
                     'Content-Type': 'application/json'
