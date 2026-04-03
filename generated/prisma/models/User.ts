@@ -20,25 +20,14 @@ export type UserModel = runtime.Types.Result.DefaultSelection<Prisma.$UserPayloa
 
 export type AggregateUser = {
   _count: UserCountAggregateOutputType | null
-  _avg: UserAvgAggregateOutputType | null
-  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
-}
-
-export type UserAvgAggregateOutputType = {
-  height: number | null
-}
-
-export type UserSumAggregateOutputType = {
-  height: number | null
 }
 
 export type UserMinAggregateOutputType = {
   id_user: string | null
   password: string | null
   name: string | null
-  height: number | null
   createAt: Date | null
   description: string | null
 }
@@ -47,7 +36,6 @@ export type UserMaxAggregateOutputType = {
   id_user: string | null
   password: string | null
   name: string | null
-  height: number | null
   createAt: Date | null
   description: string | null
 }
@@ -56,26 +44,16 @@ export type UserCountAggregateOutputType = {
   id_user: number
   password: number
   name: number
-  height: number
   createAt: number
   description: number
   _all: number
 }
 
 
-export type UserAvgAggregateInputType = {
-  height?: true
-}
-
-export type UserSumAggregateInputType = {
-  height?: true
-}
-
 export type UserMinAggregateInputType = {
   id_user?: true
   password?: true
   name?: true
-  height?: true
   createAt?: true
   description?: true
 }
@@ -84,7 +62,6 @@ export type UserMaxAggregateInputType = {
   id_user?: true
   password?: true
   name?: true
-  height?: true
   createAt?: true
   description?: true
 }
@@ -93,7 +70,6 @@ export type UserCountAggregateInputType = {
   id_user?: true
   password?: true
   name?: true
-  height?: true
   createAt?: true
   description?: true
   _all?: true
@@ -137,18 +113,6 @@ export type UserAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: UserAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: UserSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: UserMinAggregateInputType
@@ -179,8 +143,6 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   _count?: UserCountAggregateInputType | true
-  _avg?: UserAvgAggregateInputType
-  _sum?: UserSumAggregateInputType
   _min?: UserMinAggregateInputType
   _max?: UserMaxAggregateInputType
 }
@@ -189,12 +151,9 @@ export type UserGroupByOutputType = {
   id_user: string
   password: string
   name: string
-  height: number
   createAt: Date
-  description: string
+  description: string | null
   _count: UserCountAggregateOutputType | null
-  _avg: UserAvgAggregateOutputType | null
-  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
 }
@@ -221,9 +180,8 @@ export type UserWhereInput = {
   id_user?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringFilter<"User"> | string
-  height?: Prisma.IntFilter<"User"> | number
   createAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  description?: Prisma.StringFilter<"User"> | string
+  description?: Prisma.StringNullableFilter<"User"> | string | null
   schedules?: Prisma.ScheduleListRelationFilter
 }
 
@@ -231,9 +189,8 @@ export type UserOrderByWithRelationInput = {
   id_user?: Prisma.SortOrder
   password?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  height?: Prisma.SortOrder
   createAt?: Prisma.SortOrder
-  description?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
   schedules?: Prisma.ScheduleOrderByRelationAggregateInput
 }
 
@@ -244,9 +201,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   password?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringFilter<"User"> | string
-  height?: Prisma.IntFilter<"User"> | number
   createAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  description?: Prisma.StringFilter<"User"> | string
+  description?: Prisma.StringNullableFilter<"User"> | string | null
   schedules?: Prisma.ScheduleListRelationFilter
 }, "id_user">
 
@@ -254,14 +210,11 @@ export type UserOrderByWithAggregationInput = {
   id_user?: Prisma.SortOrder
   password?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  height?: Prisma.SortOrder
   createAt?: Prisma.SortOrder
-  description?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
-  _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
-  _sum?: Prisma.UserSumOrderByAggregateInput
 }
 
 export type UserScalarWhereWithAggregatesInput = {
@@ -271,18 +224,16 @@ export type UserScalarWhereWithAggregatesInput = {
   id_user?: Prisma.StringWithAggregatesFilter<"User"> | string
   password?: Prisma.StringWithAggregatesFilter<"User"> | string
   name?: Prisma.StringWithAggregatesFilter<"User"> | string
-  height?: Prisma.IntWithAggregatesFilter<"User"> | number
   createAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
-  description?: Prisma.StringWithAggregatesFilter<"User"> | string
+  description?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
 
 export type UserCreateInput = {
   id_user?: string
   password: string
   name: string
-  height?: number
   createAt?: Date | string
-  description: string
+  description?: string | null
   schedules?: Prisma.ScheduleCreateNestedManyWithoutSchedulerInput
 }
 
@@ -290,9 +241,8 @@ export type UserUncheckedCreateInput = {
   id_user?: string
   password: string
   name: string
-  height?: number
   createAt?: Date | string
-  description: string
+  description?: string | null
   schedules?: Prisma.ScheduleUncheckedCreateNestedManyWithoutSchedulerInput
 }
 
@@ -300,9 +250,8 @@ export type UserUpdateInput = {
   id_user?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  height?: Prisma.IntFieldUpdateOperationsInput | number
   createAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   schedules?: Prisma.ScheduleUpdateManyWithoutSchedulerNestedInput
 }
 
@@ -310,9 +259,8 @@ export type UserUncheckedUpdateInput = {
   id_user?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  height?: Prisma.IntFieldUpdateOperationsInput | number
   createAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   schedules?: Prisma.ScheduleUncheckedUpdateManyWithoutSchedulerNestedInput
 }
 
@@ -320,27 +268,24 @@ export type UserCreateManyInput = {
   id_user?: string
   password: string
   name: string
-  height?: number
   createAt?: Date | string
-  description: string
+  description?: string | null
 }
 
 export type UserUpdateManyMutationInput = {
   id_user?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  height?: Prisma.IntFieldUpdateOperationsInput | number
   createAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
   id_user?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  height?: Prisma.IntFieldUpdateOperationsInput | number
   createAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserScalarRelationFilter = {
@@ -352,20 +297,14 @@ export type UserCountOrderByAggregateInput = {
   id_user?: Prisma.SortOrder
   password?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  height?: Prisma.SortOrder
   createAt?: Prisma.SortOrder
   description?: Prisma.SortOrder
-}
-
-export type UserAvgOrderByAggregateInput = {
-  height?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
   id_user?: Prisma.SortOrder
   password?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  height?: Prisma.SortOrder
   createAt?: Prisma.SortOrder
   description?: Prisma.SortOrder
 }
@@ -374,13 +313,8 @@ export type UserMinOrderByAggregateInput = {
   id_user?: Prisma.SortOrder
   password?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  height?: Prisma.SortOrder
   createAt?: Prisma.SortOrder
   description?: Prisma.SortOrder
-}
-
-export type UserSumOrderByAggregateInput = {
-  height?: Prisma.SortOrder
 }
 
 export type UserCreateNestedOneWithoutSchedulesInput = {
@@ -401,18 +335,16 @@ export type UserCreateWithoutSchedulesInput = {
   id_user?: string
   password: string
   name: string
-  height?: number
   createAt?: Date | string
-  description: string
+  description?: string | null
 }
 
 export type UserUncheckedCreateWithoutSchedulesInput = {
   id_user?: string
   password: string
   name: string
-  height?: number
   createAt?: Date | string
-  description: string
+  description?: string | null
 }
 
 export type UserCreateOrConnectWithoutSchedulesInput = {
@@ -435,18 +367,16 @@ export type UserUpdateWithoutSchedulesInput = {
   id_user?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  height?: Prisma.IntFieldUpdateOperationsInput | number
   createAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserUncheckedUpdateWithoutSchedulesInput = {
   id_user?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  height?: Prisma.IntFieldUpdateOperationsInput | number
   createAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  description?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -484,7 +414,6 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   id_user?: boolean
   password?: boolean
   name?: boolean
-  height?: boolean
   createAt?: boolean
   description?: boolean
   schedules?: boolean | Prisma.User$schedulesArgs<ExtArgs>
@@ -495,7 +424,6 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id_user?: boolean
   password?: boolean
   name?: boolean
-  height?: boolean
   createAt?: boolean
   description?: boolean
 }, ExtArgs["result"]["user"]>
@@ -504,7 +432,6 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   id_user?: boolean
   password?: boolean
   name?: boolean
-  height?: boolean
   createAt?: boolean
   description?: boolean
 }, ExtArgs["result"]["user"]>
@@ -513,12 +440,11 @@ export type UserSelectScalar = {
   id_user?: boolean
   password?: boolean
   name?: boolean
-  height?: boolean
   createAt?: boolean
   description?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_user" | "password" | "name" | "height" | "createAt" | "description", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_user" | "password" | "name" | "createAt" | "description", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   schedules?: boolean | Prisma.User$schedulesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -535,9 +461,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     id_user: string
     password: string
     name: string
-    height: number
     createAt: Date
-    description: string
+    description: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -965,7 +890,6 @@ export interface UserFieldRefs {
   readonly id_user: Prisma.FieldRef<"User", 'String'>
   readonly password: Prisma.FieldRef<"User", 'String'>
   readonly name: Prisma.FieldRef<"User", 'String'>
-  readonly height: Prisma.FieldRef<"User", 'Int'>
   readonly createAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly description: Prisma.FieldRef<"User", 'String'>
 }

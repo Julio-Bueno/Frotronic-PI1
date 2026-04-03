@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Footer from "../components/footer"
+import { refresh } from 'next/cache';
 
 export default function Register() {
     const [name, setName] = useState('');
@@ -14,13 +15,11 @@ export default function Register() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
-    async function handleRegister(e: React.FormEvent) {
-        e.preventDefault();
+    async function handleRegister(name: string, password: string) {
         setError('');
         setSuccess('');
         setLoading(true);
 
-        // Validate passwords match
         if (password !== confirmPassword) {
             setError('As senhas não coincidem');
             setLoading(false);
@@ -28,23 +27,30 @@ export default function Register() {
         }
 
         try {
-            const res = await fetch('/api/register', {
+            const response = await fetch('/api/register', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, password }),
+                headers: { 
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name,
+                    password
+                }),
             });
 
-            const data = await res.json();
+            const user = await response.json();
+            
+            console.log(user.user);
 
-            if (res.ok) {
-                setSuccess('Cadastro realizado com sucesso, redirecionando para o login...');
+            if (user.success) {
+                setSuccess(user.message || 'Usuário registrado com sucesso!');
                 setTimeout(() => {
                     router.push('/login');
                 }, 2000);
-            } else {
-                setError(data.error || 'Falha no cadastro');
+            }else {
+                setError(user.error || 'Ocorreu um erro desconhecido. Relate via email.')
             }
-        } catch (err) {
+        } catch (error) {
             setError('Ocorreu um erro. Por favor, tente novamente ou envie um email.');
         } finally {
             setLoading(false);
@@ -58,7 +64,10 @@ export default function Register() {
                     <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Frotronic</h1>
                     <h2 className="text-xl font-semibold text-center text-gray-600 mb-8">Criar Conta</h2>
 
-                    <form onSubmit={handleRegister} className="space-y-4 text-black">
+                    <form onSubmit={(e) => {
+                        e.preventDefault()
+                        handleRegister(name, password)
+                    }} className="space-y-4 text-black">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Nome de Usuário
@@ -121,7 +130,7 @@ export default function Register() {
                             disabled={loading}
                             className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition"
                         >
-                            {loading ? 'Creating account...' : 'Registrar'}
+                            {loading ? 'Criando conta...' : 'Registrar'}
                         </button>
                     </form>
 

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Footer from "../components/footer"
 
+
 export default function Login() {
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
@@ -12,32 +13,26 @@ export default function Login() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
-    async function handleLogin(e: React.FormEvent) {
-        e.preventDefault();
+    async function handleLogin(name: string, password: string) {
         setError('');
         setLoading(true);
-
-        try {
-            const res = await fetch('/api/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, password }),
-            });
-
-            const data = await res.json();
-
-            if (res.ok) {
-                // Store user info in localStorage
-                localStorage.setItem('userId', data.userId);
-                localStorage.setItem('userName', data.name);
-                router.push('/dashboard');
-            } else {
-                setError(data.error || 'Login malsucedido');
-            }
-        } catch (err) {
-            setError('Ocorreu um erro. Por favor, tente novamente ou envie um email.');
-        } finally {
-            setLoading(false);
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                password: password
+            })
+        });
+        const user = await response.json();
+        if(user.success){
+            router.push('/dashboard')
+        } else {
+            setError(user.error || 'Ocorreu um erro desconhecido. Tente novamente.')
+            setLoading(false)
+            router.push('/login');
         }
     }
 
@@ -48,7 +43,10 @@ export default function Login() {
                     <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Frotronic</h1>
                     <h2 className="text-xl font-semibold text-center text-gray-600 mb-8">Entrar</h2>
 
-                    <form onSubmit={handleLogin} className="space-y-4">
+                    <form  onSubmit= {(e) => {
+                        e.preventDefault()
+                        handleLogin(name, password);
+                    }} className="space-y-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Nome
@@ -56,7 +54,7 @@ export default function Login() {
                             <input
                                 type="text"
                                 value={name}
-                                onChange={(e) => setName(e.target.value)}
+                                onChange={(named) => setName(named.target.value)}
                                 className="text-black w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 placeholder="Seu nome de usuário"
                                 required
@@ -71,7 +69,7 @@ export default function Login() {
                             <input
                                 type="password"
                                 value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={(passwored) => setPassword(passwored.target.value)}
                                 className="text-black w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 placeholder="••••••••"
                                 required
@@ -90,7 +88,7 @@ export default function Login() {
                             disabled={loading}
                             className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold py-2 px-4 rounded-lg transition"
                         >
-                            {loading ? 'Logging in...' : 'Entrar'}
+                            {loading ? 'Checando...' : 'Entrar'}
                         </button>
                     </form>
 

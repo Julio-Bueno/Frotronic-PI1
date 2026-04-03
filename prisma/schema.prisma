@@ -33,7 +33,7 @@ model Vehicle {
 
 model Schedule {
   schedule_id  String    @id @default(uuid())
-  leave        DateTime
+  leave        DateTime  @default(now())
   arrive       DateTime?
   driver       Drivers   @relation(fields: [driver_id], references: [id_driver])
   driver_id    String
@@ -48,8 +48,7 @@ model User {
   id_user     String     @id @default(uuid())
   password    String
   name        String
-  height      Int        @default(0)
   createAt    DateTime   @default(now())
-  description String
+  description String?
   schedules   Schedule[]
 }

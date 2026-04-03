@@ -260,7 +260,7 @@ export type ScheduleScalarWhereWithAggregatesInput = {
 
 export type ScheduleCreateInput = {
   schedule_id?: string
-  leave: Date | string
+  leave?: Date | string
   arrive?: Date | string | null
   available?: boolean
   driver: Prisma.DriversCreateNestedOneWithoutSchedulesInput
@@ -270,7 +270,7 @@ export type ScheduleCreateInput = {
 
 export type ScheduleUncheckedCreateInput = {
   schedule_id?: string
-  leave: Date | string
+  leave?: Date | string
   arrive?: Date | string | null
   driver_id: string
   vehicle_id: string
@@ -300,7 +300,7 @@ export type ScheduleUncheckedUpdateInput = {
 
 export type ScheduleCreateManyInput = {
   schedule_id?: string
-  leave: Date | string
+  leave?: Date | string
   arrive?: Date | string | null
   driver_id: string
   vehicle_id: string
@@ -505,7 +505,7 @@ export type ScheduleUncheckedUpdateManyWithoutSchedulerNestedInput = {
 
 export type ScheduleCreateWithoutDriverInput = {
   schedule_id?: string
-  leave: Date | string
+  leave?: Date | string
   arrive?: Date | string | null
   available?: boolean
   vehicle: Prisma.VehicleCreateNestedOneWithoutSchedulesInput
@@ -514,7 +514,7 @@ export type ScheduleCreateWithoutDriverInput = {
 
 export type ScheduleUncheckedCreateWithoutDriverInput = {
   schedule_id?: string
-  leave: Date | string
+  leave?: Date | string
   arrive?: Date | string | null
   vehicle_id: string
   available?: boolean
@@ -561,7 +561,7 @@ export type ScheduleScalarWhereInput = {
 
 export type ScheduleCreateWithoutVehicleInput = {
   schedule_id?: string
-  leave: Date | string
+  leave?: Date | string
   arrive?: Date | string | null
   available?: boolean
   driver: Prisma.DriversCreateNestedOneWithoutSchedulesInput
@@ -570,7 +570,7 @@ export type ScheduleCreateWithoutVehicleInput = {
 
 export type ScheduleUncheckedCreateWithoutVehicleInput = {
   schedule_id?: string
-  leave: Date | string
+  leave?: Date | string
   arrive?: Date | string | null
   driver_id: string
   available?: boolean
@@ -604,7 +604,7 @@ export type ScheduleUpdateManyWithWhereWithoutVehicleInput = {
 
 export type ScheduleCreateWithoutSchedulerInput = {
   schedule_id?: string
-  leave: Date | string
+  leave?: Date | string
   arrive?: Date | string | null
   available?: boolean
   driver: Prisma.DriversCreateNestedOneWithoutSchedulesInput
@@ -613,7 +613,7 @@ export type ScheduleCreateWithoutSchedulerInput = {
 
 export type ScheduleUncheckedCreateWithoutSchedulerInput = {
   schedule_id?: string
-  leave: Date | string
+  leave?: Date | string
   arrive?: Date | string | null
   driver_id: string
   vehicle_id: string
@@ -647,7 +647,7 @@ export type ScheduleUpdateManyWithWhereWithoutSchedulerInput = {
 
 export type ScheduleCreateManyDriverInput = {
   schedule_id?: string
-  leave: Date | string
+  leave?: Date | string
   arrive?: Date | string | null
   vehicle_id: string
   available?: boolean
@@ -683,7 +683,7 @@ export type ScheduleUncheckedUpdateManyWithoutDriverInput = {
 
 export type ScheduleCreateManyVehicleInput = {
   schedule_id?: string
-  leave: Date | string
+  leave?: Date | string
   arrive?: Date | string | null
   driver_id: string
   available?: boolean
@@ -719,7 +719,7 @@ export type ScheduleUncheckedUpdateManyWithoutVehicleInput = {
 
 export type ScheduleCreateManySchedulerInput = {
   schedule_id?: string
-  leave: Date | string
+  leave?: Date | string
   arrive?: Date | string | null
   driver_id: string
   vehicle_id: string
