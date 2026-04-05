@@ -2,7 +2,7 @@ import Link from "next/link"
 
 export default function Footer() {
     return (
-        <footer className = "absolute bottom-0 text-black w-full bg-white rounded-lg shadow-lg">
+        <footer className = "fixed bottom-0 text-black w-full bg-white rounded-lg shadow-lg">
             <div className = "text-bold text-center">
                 &copy; 2026 <Link href = "https://univesp.br/"> UNIVESP</Link>
             </div>

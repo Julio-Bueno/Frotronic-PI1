@@ -16,6 +16,7 @@ export default function Login() {
     async function handleLogin(name: string, password: string) {
         setError('');
         setLoading(true);
+
         const response = await fetch('/api/login', {
             method: 'POST',
             headers: {
@@ -26,16 +27,16 @@ export default function Login() {
                 password: password
             })
         });
+
         const user = await response.json();
         if(user.success){
-            router.push('/dashboard')
+            router.push('/form')
         } else {
             setError(user.error || 'Ocorreu um erro desconhecido. Tente novamente.')
             setLoading(false)
             router.push('/login');
         }
     }
-
     return (
         <>
             <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">

@@ -1,15 +1,9 @@
-import { prisma } from '../../../../lib/prisma'
+import { newUser } from '../../../../scripts/script'
+import { getUsers } from '../../../../scripts/queries'
 
 export async function POST(request: Request){
     try {
         const { name, password } = await request.json();
-
-        const userExists = await prisma.user.findFirst({
-            where: {
-                name: name,
-                password: password
-            }
-        })
 
         if (!name || !password) {
             return new Response(JSON.stringify({
@@ -22,11 +16,11 @@ export async function POST(request: Request){
                 }
             })
         }
-
+        const userExists = await getUsers(name)
         if (userExists){
             return new Response(JSON.stringify({
                 success: false,
-                error: 'Usuário já existente!'
+                error: 'Escolha outro nome de usuário!'
             }),{
                 status: 409,
                 headers: {
@@ -34,12 +28,8 @@ export async function POST(request: Request){
                 }
             })
         } else {
-            const user = await prisma.user.create({
-                data:{
-                    name: name,
-                    password: password,
-                }
-            })
+            const user = await newUser(name, password);
+
             return new Response(JSON.stringify({
                 success: true,
                 message: 'Usuário registrado com sucesso!',
@@ -51,7 +41,7 @@ export async function POST(request: Request){
                 }
             })
         }
-    }catch (error){
+    } catch (error){
         return new Response(JSON.stringify({
             error: 'Ocorreu um erro durante o cadastro!'
         }),{

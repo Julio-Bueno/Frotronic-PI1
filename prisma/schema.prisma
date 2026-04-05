@@ -47,7 +47,7 @@ model Schedule {
 model User {
   id_user     String     @id @default(uuid())
   password    String
-  name        String
+  name        String     @unique
   createAt    DateTime   @default(now())
   description String?
   schedules   Schedule[]

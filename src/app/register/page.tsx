@@ -3,8 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import Footer from "../components/footer"
-import { refresh } from 'next/cache';
+import Footer from '../components/footer'
 
 export default function Register() {
     const [name, setName] = useState('');
@@ -40,7 +39,7 @@ export default function Register() {
 
             const user = await response.json();
             
-            console.log(user.user);
+            console.log(user);
 
             if (user.success) {
                 setSuccess(user.message || 'Usuário registrado com sucesso!');
@@ -51,7 +50,7 @@ export default function Register() {
                 setError(user.error || 'Ocorreu um erro desconhecido. Relate via email.')
             }
         } catch (error) {
-            setError('Ocorreu um erro. Por favor, tente novamente ou envie um email.');
+            setError('Erro de rede. Por favor, tente novamente ou envie um email.');
         } finally {
             setLoading(false);
         }

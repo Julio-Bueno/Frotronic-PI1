@@ -1,17 +1,12 @@
-import { prisma } from '../../../../lib/prisma'
+import { getUsers } from "../../../../scripts/queries"
 
 export async function POST(request: Request){
-    try {
+    try{
         const { name, password } = await request.json();
         
-        const userExists = await prisma.user.findFirst({
-            where: {
-                name: name,
-                password: password
-            }
-        })
+        const userExists = await getUsers(name)
 
-        if (!name || !password) {
+        if(!name || !password) {
             return new Response(JSON.stringify({
                 success: false,
                 error: 'Usuário e senha são obrigatórios.'
@@ -22,8 +17,7 @@ export async function POST(request: Request){
                 }
             })
         }
-
-        if (userExists){
+        if(userExists){
             return new Response(JSON.stringify({
                 success: true,
                 user: userExists
@@ -36,7 +30,7 @@ export async function POST(request: Request){
         }else{
             return new Response(JSON.stringify({
                 success: false,
-                error: 'Usuário ou senha incorretos.'
+                error: 'Verifique os dados e tente novamente.'
             }),{
                 status: 401,
                 headers: {
@@ -44,7 +38,7 @@ export async function POST(request: Request){
                 }
             })
         }
-    }catch (error){
+    }catch(error){
         return new Response(JSON.stringify({error: 'Um erro ocorreu durante a entrada!'}), {
             status: 500,
             headers: {
