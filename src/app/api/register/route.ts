@@ -1,4 +1,4 @@
-import { newUser } from '../../../../scripts/script'
+import { newUser } from '../../../../scripts/newUser'
 import { getUsers } from '../../../../scripts/queries'
 
 export async function POST(request: Request){
@@ -17,6 +17,7 @@ export async function POST(request: Request){
             })
         }
         const userExists = await getUsers(name)
+        
         if (userExists){
             return new Response(JSON.stringify({
                 success: false,

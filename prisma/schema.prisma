@@ -33,13 +33,13 @@ model Vehicle {
 
 model Schedule {
   schedule_id  String    @id @default(uuid())
-  leave        DateTime  @default(now())
-  arrive       DateTime?
+  leave        DateTime  
+  destination  String?
   driver       Drivers   @relation(fields: [driver_id], references: [id_driver])
   driver_id    String
   vehicle      Vehicle   @relation(fields: [vehicle_id], references: [plate])
   vehicle_id   String
-  available    Boolean   @default(true)
+  status       String    @default("pending")
   scheduler    User      @relation(fields: [scheduler_id], references: [id_user])
   scheduler_id String
 }

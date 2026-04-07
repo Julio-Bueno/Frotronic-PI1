@@ -843,10 +843,10 @@ export type VehicleScalarFieldEnum = (typeof VehicleScalarFieldEnum)[keyof typeo
 export const ScheduleScalarFieldEnum = {
   schedule_id: 'schedule_id',
   leave: 'leave',
-  arrive: 'arrive',
+  destination: 'destination',
   driver_id: 'driver_id',
   vehicle_id: 'vehicle_id',
-  available: 'available',
+  status: 'status',
   scheduler_id: 'scheduler_id'
 } as const
 
@@ -904,13 +904,6 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 

@@ -100,10 +100,10 @@ export type VehicleScalarFieldEnum = (typeof VehicleScalarFieldEnum)[keyof typeo
 export const ScheduleScalarFieldEnum = {
   schedule_id: 'schedule_id',
   leave: 'leave',
-  arrive: 'arrive',
+  destination: 'destination',
   driver_id: 'driver_id',
   vehicle_id: 'vehicle_id',
-  available: 'available',
+  status: 'status',
   scheduler_id: 'scheduler_id'
 } as const
 

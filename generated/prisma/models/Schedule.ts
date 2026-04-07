@@ -27,30 +27,30 @@ export type AggregateSchedule = {
 export type ScheduleMinAggregateOutputType = {
   schedule_id: string | null
   leave: Date | null
-  arrive: Date | null
+  destination: string | null
   driver_id: string | null
   vehicle_id: string | null
-  available: boolean | null
+  status: string | null
   scheduler_id: string | null
 }
 
 export type ScheduleMaxAggregateOutputType = {
   schedule_id: string | null
   leave: Date | null
-  arrive: Date | null
+  destination: string | null
   driver_id: string | null
   vehicle_id: string | null
-  available: boolean | null
+  status: string | null
   scheduler_id: string | null
 }
 
 export type ScheduleCountAggregateOutputType = {
   schedule_id: number
   leave: number
-  arrive: number
+  destination: number
   driver_id: number
   vehicle_id: number
-  available: number
+  status: number
   scheduler_id: number
   _all: number
 }
@@ -59,30 +59,30 @@ export type ScheduleCountAggregateOutputType = {
 export type ScheduleMinAggregateInputType = {
   schedule_id?: true
   leave?: true
-  arrive?: true
+  destination?: true
   driver_id?: true
   vehicle_id?: true
-  available?: true
+  status?: true
   scheduler_id?: true
 }
 
 export type ScheduleMaxAggregateInputType = {
   schedule_id?: true
   leave?: true
-  arrive?: true
+  destination?: true
   driver_id?: true
   vehicle_id?: true
-  available?: true
+  status?: true
   scheduler_id?: true
 }
 
 export type ScheduleCountAggregateInputType = {
   schedule_id?: true
   leave?: true
-  arrive?: true
+  destination?: true
   driver_id?: true
   vehicle_id?: true
-  available?: true
+  status?: true
   scheduler_id?: true
   _all?: true
 }
@@ -162,10 +162,10 @@ export type ScheduleGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type ScheduleGroupByOutputType = {
   schedule_id: string
   leave: Date
-  arrive: Date | null
+  destination: string | null
   driver_id: string
   vehicle_id: string
-  available: boolean
+  status: string
   scheduler_id: string
   _count: ScheduleCountAggregateOutputType | null
   _min: ScheduleMinAggregateOutputType | null
@@ -193,10 +193,10 @@ export type ScheduleWhereInput = {
   NOT?: Prisma.ScheduleWhereInput | Prisma.ScheduleWhereInput[]
   schedule_id?: Prisma.StringFilter<"Schedule"> | string
   leave?: Prisma.DateTimeFilter<"Schedule"> | Date | string
-  arrive?: Prisma.DateTimeNullableFilter<"Schedule"> | Date | string | null
+  destination?: Prisma.StringNullableFilter<"Schedule"> | string | null
   driver_id?: Prisma.StringFilter<"Schedule"> | string
   vehicle_id?: Prisma.StringFilter<"Schedule"> | string
-  available?: Prisma.BoolFilter<"Schedule"> | boolean
+  status?: Prisma.StringFilter<"Schedule"> | string
   scheduler_id?: Prisma.StringFilter<"Schedule"> | string
   driver?: Prisma.XOR<Prisma.DriversScalarRelationFilter, Prisma.DriversWhereInput>
   vehicle?: Prisma.XOR<Prisma.VehicleScalarRelationFilter, Prisma.VehicleWhereInput>
@@ -206,10 +206,10 @@ export type ScheduleWhereInput = {
 export type ScheduleOrderByWithRelationInput = {
   schedule_id?: Prisma.SortOrder
   leave?: Prisma.SortOrder
-  arrive?: Prisma.SortOrderInput | Prisma.SortOrder
+  destination?: Prisma.SortOrderInput | Prisma.SortOrder
   driver_id?: Prisma.SortOrder
   vehicle_id?: Prisma.SortOrder
-  available?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   scheduler_id?: Prisma.SortOrder
   driver?: Prisma.DriversOrderByWithRelationInput
   vehicle?: Prisma.VehicleOrderByWithRelationInput
@@ -222,10 +222,10 @@ export type ScheduleWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ScheduleWhereInput[]
   NOT?: Prisma.ScheduleWhereInput | Prisma.ScheduleWhereInput[]
   leave?: Prisma.DateTimeFilter<"Schedule"> | Date | string
-  arrive?: Prisma.DateTimeNullableFilter<"Schedule"> | Date | string | null
+  destination?: Prisma.StringNullableFilter<"Schedule"> | string | null
   driver_id?: Prisma.StringFilter<"Schedule"> | string
   vehicle_id?: Prisma.StringFilter<"Schedule"> | string
-  available?: Prisma.BoolFilter<"Schedule"> | boolean
+  status?: Prisma.StringFilter<"Schedule"> | string
   scheduler_id?: Prisma.StringFilter<"Schedule"> | string
   driver?: Prisma.XOR<Prisma.DriversScalarRelationFilter, Prisma.DriversWhereInput>
   vehicle?: Prisma.XOR<Prisma.VehicleScalarRelationFilter, Prisma.VehicleWhereInput>
@@ -235,10 +235,10 @@ export type ScheduleWhereUniqueInput = Prisma.AtLeast<{
 export type ScheduleOrderByWithAggregationInput = {
   schedule_id?: Prisma.SortOrder
   leave?: Prisma.SortOrder
-  arrive?: Prisma.SortOrderInput | Prisma.SortOrder
+  destination?: Prisma.SortOrderInput | Prisma.SortOrder
   driver_id?: Prisma.SortOrder
   vehicle_id?: Prisma.SortOrder
-  available?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   scheduler_id?: Prisma.SortOrder
   _count?: Prisma.ScheduleCountOrderByAggregateInput
   _max?: Prisma.ScheduleMaxOrderByAggregateInput
@@ -251,18 +251,18 @@ export type ScheduleScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ScheduleScalarWhereWithAggregatesInput | Prisma.ScheduleScalarWhereWithAggregatesInput[]
   schedule_id?: Prisma.StringWithAggregatesFilter<"Schedule"> | string
   leave?: Prisma.DateTimeWithAggregatesFilter<"Schedule"> | Date | string
-  arrive?: Prisma.DateTimeNullableWithAggregatesFilter<"Schedule"> | Date | string | null
+  destination?: Prisma.StringNullableWithAggregatesFilter<"Schedule"> | string | null
   driver_id?: Prisma.StringWithAggregatesFilter<"Schedule"> | string
   vehicle_id?: Prisma.StringWithAggregatesFilter<"Schedule"> | string
-  available?: Prisma.BoolWithAggregatesFilter<"Schedule"> | boolean
+  status?: Prisma.StringWithAggregatesFilter<"Schedule"> | string
   scheduler_id?: Prisma.StringWithAggregatesFilter<"Schedule"> | string
 }
 
 export type ScheduleCreateInput = {
   schedule_id?: string
-  leave?: Date | string
-  arrive?: Date | string | null
-  available?: boolean
+  leave: Date | string
+  destination?: string | null
+  status?: string
   driver: Prisma.DriversCreateNestedOneWithoutSchedulesInput
   vehicle: Prisma.VehicleCreateNestedOneWithoutSchedulesInput
   scheduler: Prisma.UserCreateNestedOneWithoutSchedulesInput
@@ -270,19 +270,19 @@ export type ScheduleCreateInput = {
 
 export type ScheduleUncheckedCreateInput = {
   schedule_id?: string
-  leave?: Date | string
-  arrive?: Date | string | null
+  leave: Date | string
+  destination?: string | null
   driver_id: string
   vehicle_id: string
-  available?: boolean
+  status?: string
   scheduler_id: string
 }
 
 export type ScheduleUpdateInput = {
   schedule_id?: Prisma.StringFieldUpdateOperationsInput | string
   leave?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  arrive?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  destination?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   driver?: Prisma.DriversUpdateOneRequiredWithoutSchedulesNestedInput
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutSchedulesNestedInput
   scheduler?: Prisma.UserUpdateOneRequiredWithoutSchedulesNestedInput
@@ -291,37 +291,37 @@ export type ScheduleUpdateInput = {
 export type ScheduleUncheckedUpdateInput = {
   schedule_id?: Prisma.StringFieldUpdateOperationsInput | string
   leave?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  arrive?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  destination?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   driver_id?: Prisma.StringFieldUpdateOperationsInput | string
   vehicle_id?: Prisma.StringFieldUpdateOperationsInput | string
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   scheduler_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ScheduleCreateManyInput = {
   schedule_id?: string
-  leave?: Date | string
-  arrive?: Date | string | null
+  leave: Date | string
+  destination?: string | null
   driver_id: string
   vehicle_id: string
-  available?: boolean
+  status?: string
   scheduler_id: string
 }
 
 export type ScheduleUpdateManyMutationInput = {
   schedule_id?: Prisma.StringFieldUpdateOperationsInput | string
   leave?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  arrive?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  destination?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ScheduleUncheckedUpdateManyInput = {
   schedule_id?: Prisma.StringFieldUpdateOperationsInput | string
   leave?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  arrive?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  destination?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   driver_id?: Prisma.StringFieldUpdateOperationsInput | string
   vehicle_id?: Prisma.StringFieldUpdateOperationsInput | string
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   scheduler_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -338,30 +338,30 @@ export type ScheduleOrderByRelationAggregateInput = {
 export type ScheduleCountOrderByAggregateInput = {
   schedule_id?: Prisma.SortOrder
   leave?: Prisma.SortOrder
-  arrive?: Prisma.SortOrder
+  destination?: Prisma.SortOrder
   driver_id?: Prisma.SortOrder
   vehicle_id?: Prisma.SortOrder
-  available?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   scheduler_id?: Prisma.SortOrder
 }
 
 export type ScheduleMaxOrderByAggregateInput = {
   schedule_id?: Prisma.SortOrder
   leave?: Prisma.SortOrder
-  arrive?: Prisma.SortOrder
+  destination?: Prisma.SortOrder
   driver_id?: Prisma.SortOrder
   vehicle_id?: Prisma.SortOrder
-  available?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   scheduler_id?: Prisma.SortOrder
 }
 
 export type ScheduleMinOrderByAggregateInput = {
   schedule_id?: Prisma.SortOrder
   leave?: Prisma.SortOrder
-  arrive?: Prisma.SortOrder
+  destination?: Prisma.SortOrder
   driver_id?: Prisma.SortOrder
   vehicle_id?: Prisma.SortOrder
-  available?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   scheduler_id?: Prisma.SortOrder
 }
 
@@ -453,14 +453,6 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type ScheduleCreateNestedManyWithoutSchedulerInput = {
   create?: Prisma.XOR<Prisma.ScheduleCreateWithoutSchedulerInput, Prisma.ScheduleUncheckedCreateWithoutSchedulerInput> | Prisma.ScheduleCreateWithoutSchedulerInput[] | Prisma.ScheduleUncheckedCreateWithoutSchedulerInput[]
   connectOrCreate?: Prisma.ScheduleCreateOrConnectWithoutSchedulerInput | Prisma.ScheduleCreateOrConnectWithoutSchedulerInput[]
@@ -505,19 +497,19 @@ export type ScheduleUncheckedUpdateManyWithoutSchedulerNestedInput = {
 
 export type ScheduleCreateWithoutDriverInput = {
   schedule_id?: string
-  leave?: Date | string
-  arrive?: Date | string | null
-  available?: boolean
+  leave: Date | string
+  destination?: string | null
+  status?: string
   vehicle: Prisma.VehicleCreateNestedOneWithoutSchedulesInput
   scheduler: Prisma.UserCreateNestedOneWithoutSchedulesInput
 }
 
 export type ScheduleUncheckedCreateWithoutDriverInput = {
   schedule_id?: string
-  leave?: Date | string
-  arrive?: Date | string | null
+  leave: Date | string
+  destination?: string | null
   vehicle_id: string
-  available?: boolean
+  status?: string
   scheduler_id: string
 }
 
@@ -552,28 +544,28 @@ export type ScheduleScalarWhereInput = {
   NOT?: Prisma.ScheduleScalarWhereInput | Prisma.ScheduleScalarWhereInput[]
   schedule_id?: Prisma.StringFilter<"Schedule"> | string
   leave?: Prisma.DateTimeFilter<"Schedule"> | Date | string
-  arrive?: Prisma.DateTimeNullableFilter<"Schedule"> | Date | string | null
+  destination?: Prisma.StringNullableFilter<"Schedule"> | string | null
   driver_id?: Prisma.StringFilter<"Schedule"> | string
   vehicle_id?: Prisma.StringFilter<"Schedule"> | string
-  available?: Prisma.BoolFilter<"Schedule"> | boolean
+  status?: Prisma.StringFilter<"Schedule"> | string
   scheduler_id?: Prisma.StringFilter<"Schedule"> | string
 }
 
 export type ScheduleCreateWithoutVehicleInput = {
   schedule_id?: string
-  leave?: Date | string
-  arrive?: Date | string | null
-  available?: boolean
+  leave: Date | string
+  destination?: string | null
+  status?: string
   driver: Prisma.DriversCreateNestedOneWithoutSchedulesInput
   scheduler: Prisma.UserCreateNestedOneWithoutSchedulesInput
 }
 
 export type ScheduleUncheckedCreateWithoutVehicleInput = {
   schedule_id?: string
-  leave?: Date | string
-  arrive?: Date | string | null
+  leave: Date | string
+  destination?: string | null
   driver_id: string
-  available?: boolean
+  status?: string
   scheduler_id: string
 }
 
@@ -604,20 +596,20 @@ export type ScheduleUpdateManyWithWhereWithoutVehicleInput = {
 
 export type ScheduleCreateWithoutSchedulerInput = {
   schedule_id?: string
-  leave?: Date | string
-  arrive?: Date | string | null
-  available?: boolean
+  leave: Date | string
+  destination?: string | null
+  status?: string
   driver: Prisma.DriversCreateNestedOneWithoutSchedulesInput
   vehicle: Prisma.VehicleCreateNestedOneWithoutSchedulesInput
 }
 
 export type ScheduleUncheckedCreateWithoutSchedulerInput = {
   schedule_id?: string
-  leave?: Date | string
-  arrive?: Date | string | null
+  leave: Date | string
+  destination?: string | null
   driver_id: string
   vehicle_id: string
-  available?: boolean
+  status?: string
 }
 
 export type ScheduleCreateOrConnectWithoutSchedulerInput = {
@@ -647,18 +639,18 @@ export type ScheduleUpdateManyWithWhereWithoutSchedulerInput = {
 
 export type ScheduleCreateManyDriverInput = {
   schedule_id?: string
-  leave?: Date | string
-  arrive?: Date | string | null
+  leave: Date | string
+  destination?: string | null
   vehicle_id: string
-  available?: boolean
+  status?: string
   scheduler_id: string
 }
 
 export type ScheduleUpdateWithoutDriverInput = {
   schedule_id?: Prisma.StringFieldUpdateOperationsInput | string
   leave?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  arrive?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  destination?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutSchedulesNestedInput
   scheduler?: Prisma.UserUpdateOneRequiredWithoutSchedulesNestedInput
 }
@@ -666,35 +658,35 @@ export type ScheduleUpdateWithoutDriverInput = {
 export type ScheduleUncheckedUpdateWithoutDriverInput = {
   schedule_id?: Prisma.StringFieldUpdateOperationsInput | string
   leave?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  arrive?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  destination?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   vehicle_id?: Prisma.StringFieldUpdateOperationsInput | string
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   scheduler_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ScheduleUncheckedUpdateManyWithoutDriverInput = {
   schedule_id?: Prisma.StringFieldUpdateOperationsInput | string
   leave?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  arrive?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  destination?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   vehicle_id?: Prisma.StringFieldUpdateOperationsInput | string
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   scheduler_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ScheduleCreateManyVehicleInput = {
   schedule_id?: string
-  leave?: Date | string
-  arrive?: Date | string | null
+  leave: Date | string
+  destination?: string | null
   driver_id: string
-  available?: boolean
+  status?: string
   scheduler_id: string
 }
 
 export type ScheduleUpdateWithoutVehicleInput = {
   schedule_id?: Prisma.StringFieldUpdateOperationsInput | string
   leave?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  arrive?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  destination?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   driver?: Prisma.DriversUpdateOneRequiredWithoutSchedulesNestedInput
   scheduler?: Prisma.UserUpdateOneRequiredWithoutSchedulesNestedInput
 }
@@ -702,35 +694,35 @@ export type ScheduleUpdateWithoutVehicleInput = {
 export type ScheduleUncheckedUpdateWithoutVehicleInput = {
   schedule_id?: Prisma.StringFieldUpdateOperationsInput | string
   leave?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  arrive?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  destination?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   driver_id?: Prisma.StringFieldUpdateOperationsInput | string
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   scheduler_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ScheduleUncheckedUpdateManyWithoutVehicleInput = {
   schedule_id?: Prisma.StringFieldUpdateOperationsInput | string
   leave?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  arrive?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  destination?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   driver_id?: Prisma.StringFieldUpdateOperationsInput | string
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   scheduler_id?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ScheduleCreateManySchedulerInput = {
   schedule_id?: string
-  leave?: Date | string
-  arrive?: Date | string | null
+  leave: Date | string
+  destination?: string | null
   driver_id: string
   vehicle_id: string
-  available?: boolean
+  status?: string
 }
 
 export type ScheduleUpdateWithoutSchedulerInput = {
   schedule_id?: Prisma.StringFieldUpdateOperationsInput | string
   leave?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  arrive?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  destination?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   driver?: Prisma.DriversUpdateOneRequiredWithoutSchedulesNestedInput
   vehicle?: Prisma.VehicleUpdateOneRequiredWithoutSchedulesNestedInput
 }
@@ -738,19 +730,19 @@ export type ScheduleUpdateWithoutSchedulerInput = {
 export type ScheduleUncheckedUpdateWithoutSchedulerInput = {
   schedule_id?: Prisma.StringFieldUpdateOperationsInput | string
   leave?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  arrive?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  destination?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   driver_id?: Prisma.StringFieldUpdateOperationsInput | string
   vehicle_id?: Prisma.StringFieldUpdateOperationsInput | string
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ScheduleUncheckedUpdateManyWithoutSchedulerInput = {
   schedule_id?: Prisma.StringFieldUpdateOperationsInput | string
   leave?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  arrive?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  destination?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   driver_id?: Prisma.StringFieldUpdateOperationsInput | string
   vehicle_id?: Prisma.StringFieldUpdateOperationsInput | string
-  available?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -758,10 +750,10 @@ export type ScheduleUncheckedUpdateManyWithoutSchedulerInput = {
 export type ScheduleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   schedule_id?: boolean
   leave?: boolean
-  arrive?: boolean
+  destination?: boolean
   driver_id?: boolean
   vehicle_id?: boolean
-  available?: boolean
+  status?: boolean
   scheduler_id?: boolean
   driver?: boolean | Prisma.DriversDefaultArgs<ExtArgs>
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
@@ -771,10 +763,10 @@ export type ScheduleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type ScheduleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   schedule_id?: boolean
   leave?: boolean
-  arrive?: boolean
+  destination?: boolean
   driver_id?: boolean
   vehicle_id?: boolean
-  available?: boolean
+  status?: boolean
   scheduler_id?: boolean
   driver?: boolean | Prisma.DriversDefaultArgs<ExtArgs>
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
@@ -784,10 +776,10 @@ export type ScheduleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type ScheduleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   schedule_id?: boolean
   leave?: boolean
-  arrive?: boolean
+  destination?: boolean
   driver_id?: boolean
   vehicle_id?: boolean
-  available?: boolean
+  status?: boolean
   scheduler_id?: boolean
   driver?: boolean | Prisma.DriversDefaultArgs<ExtArgs>
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
@@ -797,14 +789,14 @@ export type ScheduleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type ScheduleSelectScalar = {
   schedule_id?: boolean
   leave?: boolean
-  arrive?: boolean
+  destination?: boolean
   driver_id?: boolean
   vehicle_id?: boolean
-  available?: boolean
+  status?: boolean
   scheduler_id?: boolean
 }
 
-export type ScheduleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"schedule_id" | "leave" | "arrive" | "driver_id" | "vehicle_id" | "available" | "scheduler_id", ExtArgs["result"]["schedule"]>
+export type ScheduleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"schedule_id" | "leave" | "destination" | "driver_id" | "vehicle_id" | "status" | "scheduler_id", ExtArgs["result"]["schedule"]>
 export type ScheduleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   driver?: boolean | Prisma.DriversDefaultArgs<ExtArgs>
   vehicle?: boolean | Prisma.VehicleDefaultArgs<ExtArgs>
@@ -831,10 +823,10 @@ export type $SchedulePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     schedule_id: string
     leave: Date
-    arrive: Date | null
+    destination: string | null
     driver_id: string
     vehicle_id: string
-    available: boolean
+    status: string
     scheduler_id: string
   }, ExtArgs["result"]["schedule"]>
   composites: {}
@@ -1264,10 +1256,10 @@ export interface Prisma__ScheduleClient<T, Null = never, ExtArgs extends runtime
 export interface ScheduleFieldRefs {
   readonly schedule_id: Prisma.FieldRef<"Schedule", 'String'>
   readonly leave: Prisma.FieldRef<"Schedule", 'DateTime'>
-  readonly arrive: Prisma.FieldRef<"Schedule", 'DateTime'>
+  readonly destination: Prisma.FieldRef<"Schedule", 'String'>
   readonly driver_id: Prisma.FieldRef<"Schedule", 'String'>
   readonly vehicle_id: Prisma.FieldRef<"Schedule", 'String'>
-  readonly available: Prisma.FieldRef<"Schedule", 'Boolean'>
+  readonly status: Prisma.FieldRef<"Schedule", 'String'>
   readonly scheduler_id: Prisma.FieldRef<"Schedule", 'String'>
 }
     
