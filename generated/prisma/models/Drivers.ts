@@ -178,13 +178,13 @@ export type DriversOrderByWithRelationInput = {
 
 export type DriversWhereUniqueInput = Prisma.AtLeast<{
   id_driver?: string
+  name?: string
   AND?: Prisma.DriversWhereInput | Prisma.DriversWhereInput[]
   OR?: Prisma.DriversWhereInput[]
   NOT?: Prisma.DriversWhereInput | Prisma.DriversWhereInput[]
-  name?: Prisma.StringFilter<"Drivers"> | string
   note?: Prisma.StringNullableFilter<"Drivers"> | string | null
   schedules?: Prisma.ScheduleListRelationFilter
-}, "id_driver">
+}, "id_driver" | "name">
 
 export type DriversOrderByWithAggregationInput = {
   id_driver?: Prisma.SortOrder

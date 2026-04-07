@@ -25,41 +25,29 @@ export type AggregateVehicle = {
 }
 
 export type VehicleMinAggregateOutputType = {
-  plate: string | null
   model: string | null
-  color: string | null
 }
 
 export type VehicleMaxAggregateOutputType = {
-  plate: string | null
   model: string | null
-  color: string | null
 }
 
 export type VehicleCountAggregateOutputType = {
-  plate: number
   model: number
-  color: number
   _all: number
 }
 
 
 export type VehicleMinAggregateInputType = {
-  plate?: true
   model?: true
-  color?: true
 }
 
 export type VehicleMaxAggregateInputType = {
-  plate?: true
   model?: true
-  color?: true
 }
 
 export type VehicleCountAggregateInputType = {
-  plate?: true
   model?: true
-  color?: true
   _all?: true
 }
 
@@ -136,9 +124,7 @@ export type VehicleGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 export type VehicleGroupByOutputType = {
-  plate: string
   model: string
-  color: string | null
   _count: VehicleCountAggregateOutputType | null
   _min: VehicleMinAggregateOutputType | null
   _max: VehicleMaxAggregateOutputType | null
@@ -163,33 +149,25 @@ export type VehicleWhereInput = {
   AND?: Prisma.VehicleWhereInput | Prisma.VehicleWhereInput[]
   OR?: Prisma.VehicleWhereInput[]
   NOT?: Prisma.VehicleWhereInput | Prisma.VehicleWhereInput[]
-  plate?: Prisma.StringFilter<"Vehicle"> | string
   model?: Prisma.StringFilter<"Vehicle"> | string
-  color?: Prisma.StringNullableFilter<"Vehicle"> | string | null
   schedules?: Prisma.ScheduleListRelationFilter
 }
 
 export type VehicleOrderByWithRelationInput = {
-  plate?: Prisma.SortOrder
   model?: Prisma.SortOrder
-  color?: Prisma.SortOrderInput | Prisma.SortOrder
   schedules?: Prisma.ScheduleOrderByRelationAggregateInput
 }
 
 export type VehicleWhereUniqueInput = Prisma.AtLeast<{
-  plate?: string
+  model?: string
   AND?: Prisma.VehicleWhereInput | Prisma.VehicleWhereInput[]
   OR?: Prisma.VehicleWhereInput[]
   NOT?: Prisma.VehicleWhereInput | Prisma.VehicleWhereInput[]
-  model?: Prisma.StringFilter<"Vehicle"> | string
-  color?: Prisma.StringNullableFilter<"Vehicle"> | string | null
   schedules?: Prisma.ScheduleListRelationFilter
-}, "plate">
+}, "model" | "model">
 
 export type VehicleOrderByWithAggregationInput = {
-  plate?: Prisma.SortOrder
   model?: Prisma.SortOrder
-  color?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.VehicleCountOrderByAggregateInput
   _max?: Prisma.VehicleMaxOrderByAggregateInput
   _min?: Prisma.VehicleMinOrderByAggregateInput
@@ -199,73 +177,51 @@ export type VehicleScalarWhereWithAggregatesInput = {
   AND?: Prisma.VehicleScalarWhereWithAggregatesInput | Prisma.VehicleScalarWhereWithAggregatesInput[]
   OR?: Prisma.VehicleScalarWhereWithAggregatesInput[]
   NOT?: Prisma.VehicleScalarWhereWithAggregatesInput | Prisma.VehicleScalarWhereWithAggregatesInput[]
-  plate?: Prisma.StringWithAggregatesFilter<"Vehicle"> | string
   model?: Prisma.StringWithAggregatesFilter<"Vehicle"> | string
-  color?: Prisma.StringNullableWithAggregatesFilter<"Vehicle"> | string | null
 }
 
 export type VehicleCreateInput = {
-  plate: string
   model: string
-  color?: string | null
   schedules?: Prisma.ScheduleCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUncheckedCreateInput = {
-  plate: string
   model: string
-  color?: string | null
   schedules?: Prisma.ScheduleUncheckedCreateNestedManyWithoutVehicleInput
 }
 
 export type VehicleUpdateInput = {
-  plate?: Prisma.StringFieldUpdateOperationsInput | string
   model?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   schedules?: Prisma.ScheduleUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleUncheckedUpdateInput = {
-  plate?: Prisma.StringFieldUpdateOperationsInput | string
   model?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   schedules?: Prisma.ScheduleUncheckedUpdateManyWithoutVehicleNestedInput
 }
 
 export type VehicleCreateManyInput = {
-  plate: string
   model: string
-  color?: string | null
 }
 
 export type VehicleUpdateManyMutationInput = {
-  plate?: Prisma.StringFieldUpdateOperationsInput | string
   model?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type VehicleUncheckedUpdateManyInput = {
-  plate?: Prisma.StringFieldUpdateOperationsInput | string
   model?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type VehicleCountOrderByAggregateInput = {
-  plate?: Prisma.SortOrder
   model?: Prisma.SortOrder
-  color?: Prisma.SortOrder
 }
 
 export type VehicleMaxOrderByAggregateInput = {
-  plate?: Prisma.SortOrder
   model?: Prisma.SortOrder
-  color?: Prisma.SortOrder
 }
 
 export type VehicleMinOrderByAggregateInput = {
-  plate?: Prisma.SortOrder
   model?: Prisma.SortOrder
-  color?: Prisma.SortOrder
 }
 
 export type VehicleScalarRelationFilter = {
@@ -288,15 +244,11 @@ export type VehicleUpdateOneRequiredWithoutSchedulesNestedInput = {
 }
 
 export type VehicleCreateWithoutSchedulesInput = {
-  plate: string
   model: string
-  color?: string | null
 }
 
 export type VehicleUncheckedCreateWithoutSchedulesInput = {
-  plate: string
   model: string
-  color?: string | null
 }
 
 export type VehicleCreateOrConnectWithoutSchedulesInput = {
@@ -316,15 +268,11 @@ export type VehicleUpdateToOneWithWhereWithoutSchedulesInput = {
 }
 
 export type VehicleUpdateWithoutSchedulesInput = {
-  plate?: Prisma.StringFieldUpdateOperationsInput | string
   model?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type VehicleUncheckedUpdateWithoutSchedulesInput = {
-  plate?: Prisma.StringFieldUpdateOperationsInput | string
   model?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -359,32 +307,24 @@ export type VehicleCountOutputTypeCountSchedulesArgs<ExtArgs extends runtime.Typ
 
 
 export type VehicleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  plate?: boolean
   model?: boolean
-  color?: boolean
   schedules?: boolean | Prisma.Vehicle$schedulesArgs<ExtArgs>
   _count?: boolean | Prisma.VehicleCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["vehicle"]>
 
 export type VehicleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  plate?: boolean
   model?: boolean
-  color?: boolean
 }, ExtArgs["result"]["vehicle"]>
 
 export type VehicleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  plate?: boolean
   model?: boolean
-  color?: boolean
 }, ExtArgs["result"]["vehicle"]>
 
 export type VehicleSelectScalar = {
-  plate?: boolean
   model?: boolean
-  color?: boolean
 }
 
-export type VehicleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"plate" | "model" | "color", ExtArgs["result"]["vehicle"]>
+export type VehicleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"model", ExtArgs["result"]["vehicle"]>
 export type VehicleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   schedules?: boolean | Prisma.Vehicle$schedulesArgs<ExtArgs>
   _count?: boolean | Prisma.VehicleCountOutputTypeDefaultArgs<ExtArgs>
@@ -398,9 +338,7 @@ export type $VehiclePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     schedules: Prisma.$SchedulePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    plate: string
     model: string
-    color: string | null
   }, ExtArgs["result"]["vehicle"]>
   composites: {}
 }
@@ -484,8 +422,8 @@ export interface VehicleDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * // Get first 10 Vehicles
    * const vehicles = await prisma.vehicle.findMany({ take: 10 })
    * 
-   * // Only select the `plate`
-   * const vehicleWithPlateOnly = await prisma.vehicle.findMany({ select: { plate: true } })
+   * // Only select the `model`
+   * const vehicleWithModelOnly = await prisma.vehicle.findMany({ select: { model: true } })
    * 
    */
   findMany<T extends VehicleFindManyArgs>(args?: Prisma.SelectSubset<T, VehicleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VehiclePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -529,9 +467,9 @@ export interface VehicleDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   ]
    * })
    * 
-   * // Create many Vehicles and only return the `plate`
-   * const vehicleWithPlateOnly = await prisma.vehicle.createManyAndReturn({
-   *   select: { plate: true },
+   * // Create many Vehicles and only return the `model`
+   * const vehicleWithModelOnly = await prisma.vehicle.createManyAndReturn({
+   *   select: { model: true },
    *   data: [
    *     // ... provide data here
    *   ]
@@ -620,9 +558,9 @@ export interface VehicleDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    *   ]
    * })
    * 
-   * // Update zero or more Vehicles and only return the `plate`
-   * const vehicleWithPlateOnly = await prisma.vehicle.updateManyAndReturn({
-   *   select: { plate: true },
+   * // Update zero or more Vehicles and only return the `model`
+   * const vehicleWithModelOnly = await prisma.vehicle.updateManyAndReturn({
+   *   select: { model: true },
    *   where: {
    *     // ... provide filter here
    *   },
@@ -825,9 +763,7 @@ export interface Prisma__VehicleClient<T, Null = never, ExtArgs extends runtime.
  * Fields of the Vehicle model
  */
 export interface VehicleFieldRefs {
-  readonly plate: Prisma.FieldRef<"Vehicle", 'String'>
   readonly model: Prisma.FieldRef<"Vehicle", 'String'>
-  readonly color: Prisma.FieldRef<"Vehicle", 'String'>
 }
     
 

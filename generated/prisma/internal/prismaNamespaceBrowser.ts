@@ -89,9 +89,7 @@ export type PassengerScalarFieldEnum = (typeof PassengerScalarFieldEnum)[keyof t
 
 
 export const VehicleScalarFieldEnum = {
-  plate: 'plate',
-  model: 'model',
-  color: 'color'
+  model: 'model'
 } as const
 
 export type VehicleScalarFieldEnum = (typeof VehicleScalarFieldEnum)[keyof typeof VehicleScalarFieldEnum]
@@ -99,7 +97,7 @@ export type VehicleScalarFieldEnum = (typeof VehicleScalarFieldEnum)[keyof typeo
 
 export const ScheduleScalarFieldEnum = {
   schedule_id: 'schedule_id',
-  leave: 'leave',
+  departure: 'departure',
   destination: 'destination',
   driver_id: 'driver_id',
   vehicle_id: 'vehicle_id',

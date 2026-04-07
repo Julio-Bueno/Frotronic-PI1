@@ -14,7 +14,7 @@ datasource db {
 
 model Drivers{
   id_driver String     @id @default(uuid())
-  name      String
+  name      String     @unique
   note      String?
   schedules Schedule[]
 }
@@ -25,19 +25,17 @@ model Passenger {
 }
 
 model Vehicle {
-  plate     String     @id
-  model     String
-  color     String?
+  model     String      @id  @unique
   schedules Schedule[]
 }
 
 model Schedule {
   schedule_id  String    @id @default(uuid())
-  leave        DateTime  
-  destination  String?
-  driver       Drivers   @relation(fields: [driver_id], references: [id_driver])
+  departure    DateTime  
+  destination  String
+  driver       Drivers   @relation(fields: [driver_id], references: [name])
   driver_id    String
-  vehicle      Vehicle   @relation(fields: [vehicle_id], references: [plate])
+  vehicle      Vehicle   @relation(fields: [vehicle_id], references: [model])
   vehicle_id   String
   status       String    @default("pending")
   scheduler    User      @relation(fields: [scheduler_id], references: [id_user])
