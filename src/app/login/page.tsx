@@ -16,30 +16,11 @@ export default function Login() {
     async function handleLogin(name: string, password: string) {
         setError('');
         setLoading(true);
-
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: name,
-                password: password
-            })
-        });
-
-        const user = await response.json();
-        if(user.success){
-            router.push('/form')
-        } else {
-            setError(user.error || 'Ocorreu um erro desconhecido. Tente novamente.')
-            setLoading(false)
-            router.push('/login');
-        }
     }
+    
     return (
         <>
-            <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
+            <div className="grid flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
                 <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
                     <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Frotronic</h1>
                     <h2 className="text-xl font-semibold text-center text-gray-600 mb-8">Entrar</h2>

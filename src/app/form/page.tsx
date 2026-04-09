@@ -8,104 +8,50 @@ import { Router } from 'next/router'
 export default function Form() {
     
     const [driver, setDriver] = useState('')
-    const [vehicle, setVehicle] = useState('')
+    const [user, setUser] = useState('')
+    const [reason, setReason] = useState('')
     const [destination, setDestination] = useState('')
-    const [departure, setDeparture] = useState('')
     const [error, setError] = useState('')
+    const [date, setDate] = useState('')
+    const [departureTime, setDepartureTime] = useState('')
+    const [comeBackTime, setComeBackTime] = useState('')
     const [success, setSuccess] = useState('')
     const [loading, setLoading] = useState(false)
 
-    function getApproved(request: Request){
-        return console.log("approved")
-    }
-    function getDenied(request: Request){
-        return console.log("denied")
-    }
-    function getPending(request: Request){
-        return console.log("pending")
-    }
-    async function handleForm(driver: String, vehicle: String, destination: String, departure: String){
-        try {
-            const response = fetch('api/form/route', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'applicatin/json'
-                },
-                body: JSON.stringify({
-                    driver,
-                    vehicle,
-                    destination,
-                    departure
-                })
-            })
-
-            const schedule = (await response).json()
-
-            if(schedule.success){
-                setSuccess(schedule.message || 'Agendado!')
-                setTimeout(() => {
-                    router.push('/form')
-                }, 2000)
-            }
-        }catch (error){
-            setError('Erro de rede. Por favor, tente novamente ou envie um email.')
-        }
- 
-    }
-    
-    async function approved(){
-        const response = fetch('api/forms/approved', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        return response
-    }
-
     return (
         <>
-            <div className = "top-0 flex items-left justify-center bg-gradient-to-br from-blue-50 to-blue-100 text-black box-border p-4">
-                <div className = "flex gap-6">
-                    <button onClick = {(e) => getApproved} className = "bg-white rounded-full p-2 align-middle text-center transition duration-700 hover:bg-gray-300"> Aprovados </button>
-                    <button onClick = {(e) => getDenied} className = "bg-white rounded-full p-2 align-middle text-center transition duration-700 hover:bg-gray-300"> Rejeitados </button>
-                    <button onClick = {(e) => getPending} className = "bg-white rounded-full p-2 align-middle text-center transition duration-700 hover:bg-gray-300 "> Pendentes </button>
-                </div>
-            </div>
             <div className="grid flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 text-black font-bold">
                 <form onSubmit = {
-                    (e) => {e.preventDefault()
-                            handleForm(driver, vehicle, destination, departure)
-                    }
+                    (e) => {e.preventDefault()}
 
                 }
                     className = "bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
                     <label className = 'block text-sm font-medium text-gray-700'>
-                        Motorista
+                        Digite seu nome completo:
                     </label>
                     <input
                         className = "text-black w-full px-2 py-1  border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         type = "text"
-                        placeholder = "Quem vai dirigir?"
+                        placeholder = "Nome do solicitante"
                         required
-                        value = {driver}
-                        onChange = {(e) => setDriver(e.target.value)}>
+                        value = {user}
+                        onChange = {(e) => setUser(e.target.value)}>
 
                     </input>
                     <label className = 'pt-2 block text-sm font-medium text-gray-700'>
-                        Veículo
+                        Digite o motivo:
                     </label>
                     <input
                         className = "text-black w-full px-2 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         type = "text"
-                        placeholder = "Qual carro?"
+                        placeholder = "Pós-venda, suporte, visita a cliente..."
                         required
-                        value = {vehicle}
-                        onChange = {(e) => setVehicle(e.target.value)}>
+                        value = {reason}
+                        onChange = {(e) => setReason(e.target.value)}>
 
                     </input>
                     <label className = 'pt-2 block text-sm font-medium text-gray-700 '>
-                        Destino
+                        Destino:
                     </label>
                     <input
                         className = "text-black w-full px-2 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -117,17 +63,65 @@ export default function Form() {
 
                     </input>
                     <label className = 'pt-2 block text-sm font-medium text-gray-700 '>
-                        Saída
+                        Quem irá junto? (se mais de um, coloque o nome de todos):
                     </label>
                     <input
                         className = "text-black w-full px-2 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
                         type = "text"
-                        placeholder = "Data da ida"
+                        placeholder = "Nomes"
                         required
-                        value = {departure}
-                        onChange = {(e) => setDeparture(e.target.value)}>
+                        value = {driver}
+                        onChange = {(e) => setDriver(e.target.value)}>
                             
                     </input>
+                    <label className = 'block text-sm font-medium text-gray-700'>
+                        Quando:
+                    </label>
+                    <input
+                        className = "text-black w-full px-2 py-1  border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        type = "date"
+                        required
+                        value = {date}
+                        onChange = {(e) => setDate(e.target.value)}>
+
+                    </input>
+                    <label className = 'pt-2 block text-sm font-medium text-gray-700'>
+                        Horário de saída:
+                    </label>
+                    <input
+                        className = "text-black w-full px-2 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        type = "time"
+                        required
+                        value = {departureTime}
+                        onChange = {(e) => setDepartureTime(e.target.value)}>
+
+                    </input>
+                    <label className = 'pt-2 block text-sm font-medium text-gray-700 '>
+                        Horário de volta:
+                    </label>
+                    <input
+                        className = "text-black w-full px-2 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        type = "time"
+                        required
+                        value = {comeBackTime}
+                        onChange = {(e) => setComeBackTime(e.target.value)}>
+
+                    </input>
+                    <label className = 'pt-2 block text-sm font-medium text-gray-700 '>
+                        Necessita de carretinha?
+                    </label>
+                    <input
+                        type = 'radio'
+                        value = '1'
+                        name = 'carreta'>
+                    </input>
+                    <label className = "pr-2">Não</label>
+                    <input
+                        type = 'radio'
+                        value = '1'
+                        name = 'carreta'>
+                    </input>
+                    <label>Sim</label> <br/>
 
                     {error && (
                         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
